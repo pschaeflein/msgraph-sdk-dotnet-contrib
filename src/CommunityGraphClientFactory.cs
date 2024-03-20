@@ -16,23 +16,16 @@ namespace Graph.Community
   /// </summary>
   public static class CommunityGraphClientFactory
   {
-    private static readonly object telemetryFlagLock = new();
     internal static bool telemetryDisabled;
     internal static bool TelemetryDisabled
     {
       get
       {
-        lock (telemetryFlagLock)
-        {
-          return telemetryDisabled;
-        }
+        return telemetryDisabled;
       }
       set
       {
-        lock (telemetryFlagLock)
-        {
-          telemetryDisabled = value;
-        }
+        telemetryDisabled = value;
       }
     }
 
@@ -202,7 +195,7 @@ namespace Graph.Community
       return graphServiceClient;
     }
 
-    private static IList<DelegatingHandler> AddLoggingHandlerToGraphDefaults(IHttpMessageLogger messageLogger, IAuthenticationProvider authenticationProvider)
+    public static IList<DelegatingHandler> AddLoggingHandlerToGraphDefaults(IHttpMessageLogger messageLogger, IAuthenticationProvider authenticationProvider)
     {
       LoggingMessageHandler loggingHandler = new(messageLogger);
 

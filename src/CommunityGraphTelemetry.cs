@@ -61,7 +61,6 @@ namespace Graph.Community
       }
 
       telemetryClient.TrackEvent("GraphCommunityRequest", properties);
-      telemetryClient.Flush();
     }
 
     internal static void LogExtensionMethod(string extensionMethodName = "Not specified")
